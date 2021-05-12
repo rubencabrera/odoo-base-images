@@ -1,0 +1,16 @@
+{
+  "regexManagers": [
+    {
+      "datasourceTemplate": "github-tags",
+      "fileMatch": ["^Dockerfile$"],
+      "matchStrings": [
+        "git clone --branch (?<currentValue>.*) --depth 1 https:\/\/github\\.com\/(?<depName>.*?\/.*?)\\.git"
+      ]
+    }
+  ],
+  "extends": [
+    "config:base"
+  ],
+  "semanticCommits": "enabled",
+  "semanticCommitType": "build"
+}
