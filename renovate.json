@@ -1,4 +1,5 @@
 {
+  "rangeStrategy": "pin",
   "regexManagers": [
     {
       "datasourceTemplate": "github-tags",
@@ -7,9 +8,6 @@
         "FROM\\s+(?<depName>.*?):(?<currentValue>)"
       ]
     }
-  ],
-  "extends": [
-    "config:base"
   ],
   "semanticCommits": "enabled",
   "semanticCommitType": "build"
