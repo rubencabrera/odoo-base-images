@@ -10,7 +10,7 @@
   ],
   "packageRules": [
     {
-      "datasources": ["docker"],
+      "matchDatasources": ["docker"],
       "pinDigests": true
     }
   ],
