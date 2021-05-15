@@ -1,11 +1,17 @@
 {
   "regexManagers": [
     {
-      "datasourceTemplate": "github-tags",
+      "datasourceTemplate": "docker",
       "fileMatch": ["^Dockerfile$"],
       "matchStrings": [
         "FROM\\s+(?<depName>.*?):(?<currentValue>)"
       ]
+    }
+  ],
+  "packageRules": [
+    {
+      "datasources": ["docker"],
+      "pinDigests": true
     }
   ],
   "extends": [
