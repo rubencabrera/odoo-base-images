@@ -15,10 +15,6 @@
       "pinDigests": true
     }
   ],
-  "extends": [
-    "config:base"
-  ],
-
   "semanticCommits": "enabled",
   "semanticCommitType": "build"
 }
