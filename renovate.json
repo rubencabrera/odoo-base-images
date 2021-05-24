@@ -1,8 +1,8 @@
 {
-  "rangeStrategy": "pin",
   "regexManagers": [
     {
       "datasourceTemplate": "docker",
+      "versioningTemplate": "docker",
       "fileMatch": ["^Dockerfile$"],
       "matchStrings": [
         "FROM\\s+(?<depName>.*):(?<currentValue>.*)"
@@ -11,8 +11,7 @@
   ],
   "packageRules": [
     {
-      "matchDatasources": ["docker"],
-      "pinDigests": true
+      "matchDatasources": ["docker"]
     }
   ],
   "semanticCommits": "enabled",
