@@ -10,7 +10,7 @@
     "@semantic-release/git": "10.0.1"
   },
   "release": {
-    "branches": ["12"],
+    "branches": ["12", "13", "14"],
     "repositoryUrl": "https://github.com/rubencabrera/odoo-base-images.git",
 		"tagFormat": "${version}",
     "plugins": [
