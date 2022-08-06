@@ -1,5 +1,5 @@
 # DOCKER image to run odoo 14 with Odoo Community Backports and OCA addons
-FROM debian:9.13
+FROM debian:11.4
 MAINTAINER Rubén Cabrera Martínez <dev@rubencabrera.es>
 EXPOSE 8069 8071 8072
 ENV LANG C.UTF-8
@@ -17,7 +17,7 @@ RUN add-apt-repository "deb http://apt.postgresql.org/pub/repos/apt/ stretch-pgd
 
 RUN apt-get update && apt-get install \
         git \
-        libssl1.0-dev \
+        libssl-dev \
         locales \
         net-tools \
         node-clean-css \
@@ -83,6 +83,7 @@ RUN pip3 install \
         num2words \
 	pandas \
 	phonenumbers \
+	polib \
         psycogreen \
 	twilio \
         unidecode \
