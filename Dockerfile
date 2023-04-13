@@ -1,5 +1,6 @@
 # DOCKER image to run odoo 12 with Odoo Community Backports and OCA addons
-FROM debian:9.13
+# Bullseye:
+FROM debian:11.6
 MAINTAINER Rubén Cabrera Martínez <dev@rubencabrera.es>
 EXPOSE 8069 8071 8072
 ENV LANG C.UTF-8
@@ -11,18 +12,14 @@ RUN apt-get update \
     gnupg2 \
     -y
 
-RUN add-apt-repository "deb http://apt.postgresql.org/pub/repos/apt/ stretch-pgdg main" -y; \
-    wget --quiet -O - https://postgresql.org/media/keys/ACCC4CF8.asc | \
-    apt-key add -
-
 RUN apt-get update && apt-get install \
         git \
-        libssl1.0-dev \
+        libssl-dev \
         locales \
         net-tools \
         node-clean-css \
         node-less \
-	postgresql-client-9.6 \
+	postgresql-client \
         python3-apt \
         python3-babel \
         python3-cups \
