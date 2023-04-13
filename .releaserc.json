@@ -1,5 +1,21 @@
 {
-  "branches": ["12", "13", "14"],
+  "branches": [
+    {
+      "channel": "12.x",
+      "name": "12",
+      "range": "12.x"
+    },
+    {
+      "channel": "13.x",
+      "name": "13",
+      "range": "13.x"
+    },
+    {
+      "channel": "14.x",
+      "name": "14",
+      "range": "14.x"
+    }
+  ],
   "fail": ["@semantic-release/github"],
   "plugins": [
     [
