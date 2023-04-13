@@ -1,4 +1,5 @@
 # DOCKER image to run odoo 12 with Odoo Community Backports and OCA addons
+# Bullseye:
 FROM debian:11.6
 MAINTAINER Rubén Cabrera Martínez <dev@rubencabrera.es>
 EXPOSE 8069 8071 8072
@@ -13,7 +14,7 @@ RUN apt-get update \
 
 RUN apt-get update && apt-get install \
         git \
-        libssl1.0-dev \
+        libssl-dev \
         locales \
         net-tools \
         node-clean-css \
