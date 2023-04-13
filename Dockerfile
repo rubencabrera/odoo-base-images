@@ -11,10 +11,6 @@ RUN apt-get update \
     gnupg2 \
     -y
 
-RUN add-apt-repository "deb http://apt.postgresql.org/pub/repos/apt/ stretch-pgdg main" -y; \
-    wget --quiet -O - https://postgresql.org/media/keys/ACCC4CF8.asc | \
-    apt-key add -
-
 RUN apt-get update && apt-get install \
         git \
         libssl1.0-dev \
