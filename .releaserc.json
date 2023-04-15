@@ -17,5 +17,6 @@
   ],
   "publish": [ "@semantic-release/github" ],
   "repositoryUrl": "https://github.com/rubencabrera/odoo-base-images.git",
+  "tagFormat": "${version}",
   "verifyConditions": [ "@semantic-release/github" ]
 }
