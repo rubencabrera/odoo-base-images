@@ -2,6 +2,7 @@ name: Release
 on:
   push:
     branches:
+      - master
       - "12.x"
       - "13.x"
       - "14.x"
