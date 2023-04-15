@@ -2,7 +2,9 @@ name: Release
 on:
   push:
     branches:
-      - 12
+      - "12.x"
+      - "13.x"
+      - "14.x"
 jobs:
   release:
     permissions:
