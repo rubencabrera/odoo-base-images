@@ -40,7 +40,7 @@ jobs:
             type=semver,pattern={{version}}
       - name: Docker build
         id: docker_build
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v5
         with:
           labels: ${{ steps.meta.outputs.labels }}
       - name: Semantic Release
@@ -51,7 +51,7 @@ jobs:
       - name: Docker push
         if: steps.semantic.outputs.new_release_published == 'true'
         id: docker_push
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v5
         with:
           push: true
           tags: |
