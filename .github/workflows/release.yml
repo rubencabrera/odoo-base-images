@@ -73,12 +73,7 @@ jobs:
             type=ref,event=tag
             type=semver,pattern={{version}}
             type=semver,pattern={{major}}.{{minor}}
-      - name: Docker build
-        id: docker_build
-        uses: docker/build-push-action@v5
-        with:
-          labels: ${{ steps.meta.outputs.labels }}
-      - name: Docker push
+      - name: Docker build and push
         if: needs.semantic-release.outputs.new_release_published == 'true'
         id: docker_push
         uses: docker/build-push-action@v5
