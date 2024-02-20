@@ -1,11 +1,7 @@
 name: Release
 on:
   push:
-    branches:
-      - master
-      - "12.x"
-      - "13.x"
-      - "14.x"
+
 jobs:
   release:
     permissions:
@@ -19,11 +15,6 @@ jobs:
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      - name: Semantic Release
-        id: semantic
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        uses: cycjimmy/semantic-release-action@v3
       - name: Login to DockerHub
         if: steps.semantic.outputs.new_release_published == 'true'
         uses: docker/login-action@v2
@@ -47,12 +38,22 @@ jobs:
           tags: |
             type=ref,event=tag
             type=semver,pattern={{version}}
-      - name: Docker build and push
-        if: steps.semantic.outputs.new_release_published == 'true'
+      - name: Docker build
         id: docker_build
         uses: docker/build-push-action@v3
         with:
-          push: ${{ github.event_name != 'pull_request' }}
+          labels: ${{ steps.meta.outputs.labels }}
+      - name: Semantic Release
+        id: semantic
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: cycjimmy/semantic-release-action@v3
+      - name: Docker push
+        if: steps.semantic.outputs.new_release_published == 'true'
+        id: docker_push
+        uses: docker/build-push-action@v3
+        with:
+          push: true
           tags: |
             rubencabrera/odoo-base-image:${{ steps.semantic.outputs.new_release_version }}
           labels: ${{ steps.meta.outputs.labels }}
