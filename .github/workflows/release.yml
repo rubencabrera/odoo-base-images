@@ -21,7 +21,7 @@ jobs:
         id: semrel
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        uses: cycjimmy/semantic-release-action@v3
+        uses: cycjimmy/semantic-release-action@v4
 
   docker-build:
     name: Docker build
