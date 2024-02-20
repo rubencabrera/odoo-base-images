@@ -3,12 +3,47 @@ on:
   push:
 
 jobs:
-  release:
+  semantic-release:
+    name: Release
+    outputs:
+      new_release_published: ${{ steps.semantic.outputs.new_release_published }}
     permissions:
       contents: write
       issues: write
       pull-requests: write
-    name: Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Semantic Release
+        id: semrel
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: cycjimmy/semantic-release-action@v3
+
+  docker-build:
+    name: Docker build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v2
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+      - name: Docker build
+        id: docker_build
+        uses: docker/build-push-action@v5
+
+  docker-push:
+    name: Docker push
+    needs:
+      - semantic-release
+      - docker-build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -16,21 +51,20 @@ jobs:
         with:
           fetch-depth: 0
       - name: Login to DockerHub
-        if: steps.semantic.outputs.new_release_published == 'true'
+        if: needs.semantic-release.outputs.new_release_published == 'true'
         uses: docker/login-action@v2
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: Set up QEMU
-        if: steps.semantic.outputs.new_release_published == 'true'
+        if: needs.semantic-release.outputs.new_release_published == 'true'
         uses: docker/setup-qemu-action@v2
       - name: Set up Docker Buildx
-        if: steps.semantic.outputs.new_release_published == 'true'
+        if: needs.semantic-release.outputs.new_release_published == 'true'
         uses: docker/setup-buildx-action@v2
       - name: Docker meta
         id: meta
-        if: steps.semantic.outputs.new_release_published == 'true'
-        uses: crazy-max/ghaction-docker-meta@v4
+        uses: docker/metadata-action@v5
         with:
           labels: |
             org.opencontainers.image.url=https://hub.docker.com/r/rubencabrera/odoo-base-image
@@ -38,22 +72,18 @@ jobs:
           tags: |
             type=ref,event=tag
             type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
       - name: Docker build
         id: docker_build
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v5
         with:
           labels: ${{ steps.meta.outputs.labels }}
-      - name: Semantic Release
-        id: semantic
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        uses: cycjimmy/semantic-release-action@v3
       - name: Docker push
-        if: steps.semantic.outputs.new_release_published == 'true'
+        if: needs.semantic-release.outputs.new_release_published == 'true'
         id: docker_push
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v5
         with:
           push: true
           tags: |
-            rubencabrera/odoo-base-image:${{ steps.semantic.outputs.new_release_version }}
+            rubencabrera/odoo-base-image:${{ needs.semantic-release.outputs.new_release_version }}
           labels: ${{ steps.meta.outputs.labels }}
