@@ -42,8 +42,6 @@ jobs:
         id: docker_build
         uses: docker/build-push-action@v3
         with:
-          tags: |
-            rubencabrera/odoo-base-image:${{ steps.semantic.outputs.new_release_version }}
           labels: ${{ steps.meta.outputs.labels }}
       - name: Semantic Release
         id: semantic
