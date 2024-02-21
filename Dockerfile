@@ -1,5 +1,4 @@
-# DOCKER image to run odoo 13 with Odoo Community Backports and OCA addons
-# Bullseye:
+# DOCKER image to run odoo 14 with Odoo Community Backports and OCA addons
 FROM debian:11.6
 MAINTAINER Rubén Cabrera Martínez <dev@rubencabrera.es>
 EXPOSE 8069 8071 8072
@@ -80,6 +79,7 @@ RUN pip3 install \
         num2words \
 	pandas \
 	phonenumbers \
+	polib \
         psycogreen \
 	twilio \
         unidecode \
