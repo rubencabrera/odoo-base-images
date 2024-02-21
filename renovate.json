@@ -1,5 +1,5 @@
 {
-  "baseBranches": ["12.x", "14.x"],
+  "baseBranches": ["12.x", "14.x", "16.x"],
   "regexManagers": [
     {
       "datasourceTemplate": "docker",
