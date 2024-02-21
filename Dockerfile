@@ -1,4 +1,4 @@
-# DOCKER image to run odoo 15 with Odoo Community Backports and OCA addons
+# DOCKER image to run odoo 16 with Odoo Community Backports and OCA addons
 FROM debian:11.6
 MAINTAINER Rubén Cabrera Martínez <dev@rubencabrera.es>
 EXPOSE 8069 8071 8072
