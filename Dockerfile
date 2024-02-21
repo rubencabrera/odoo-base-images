@@ -1,4 +1,4 @@
-# DOCKER image to run odoo 12 with Odoo Community Backports and OCA addons
+# DOCKER image to run odoo 13 with Odoo Community Backports and OCA addons
 # Bullseye:
 FROM debian:11.6
 MAINTAINER Rubén Cabrera Martínez <dev@rubencabrera.es>
