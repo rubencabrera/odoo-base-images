@@ -1,6 +1,6 @@
 # Odoo base images
 
-Base docker images for [odoo-docker with OCA repos][odoo-docker].
+Base docker images for [odoo-docker with OCA repos][odoo-docker], version 15.
 
 There's no Odoo in this images, just the dependencies.
 
