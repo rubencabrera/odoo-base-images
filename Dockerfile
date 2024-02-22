@@ -23,7 +23,6 @@ RUN apt-get update && apt-get install \
         python3-apt \
         python3-babel \
         python3-cups \
-        python3-dateutil \
         python3-decorator \
         python3-dev \
         python3-docutils \
@@ -64,25 +63,27 @@ RUN apt-get update && apt-get install \
         xfonts-utils \
         -y
 
-RUN wget https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.5/wkhtmltox_0.12.5-1.stretch_amd64.deb
-RUN dpkg -i wkhtmltox_0.12.5-1.stretch_amd64.deb
+RUN wget https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6.1-2/wkhtmltox_0.12.6.1-2.bullseye_amd64.deb
+RUN dpkg -i wkhtmltox_0.12.6.1-2.bullseye_amd64.deb
 
 RUN pip3 install \
-        backports.functools_lru_cache \
+	backports.functools_lru_cache \
 	bokeh \
-        cssutils \
-        dbfpy \
-        html2text \
-        libsass \
+	cssutils \
+	dbfpy \
+	html2text \
+	libsass \
 	odoorpc \
 	ofxparse \
-        openupgradelib \
-        num2words \
+	openupgradelib \
+	num2words \
 	pandas \
 	phonenumbers \
-        psycogreen \
+	polib \
+	psycogreen \
+	python3-dateutil \
 	twilio \
-        unidecode \
-        xlrd \
+	unidecode \
+	xlrd \
 	zeep \
 	zklib
