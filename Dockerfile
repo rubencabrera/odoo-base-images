@@ -19,7 +19,7 @@ RUN apt-get update && apt-get install \
         net-tools \
         node-clean-css \
         node-less \
-	postgresql-client \
+        postgresql-client \
         python3-apt \
         python3-babel \
         python3-cups \
@@ -67,23 +67,23 @@ RUN wget https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6.1-2/w
 RUN dpkg -i wkhtmltox_0.12.6.1-2.bullseye_amd64.deb
 
 RUN pip3 install \
-	backports.functools_lru_cache \
-	bokeh \
-	cssutils \
-	dbfpy \
-	html2text \
-	libsass \
-	odoorpc \
-	ofxparse \
-	openupgradelib \
-	num2words \
-	pandas \
-	phonenumbers \
-	polib \
-	psycogreen \
-	python3-dateutil \
-	twilio \
-	unidecode \
-	xlrd \
-	zeep \
-	zklib
+    backports.functools_lru_cache \
+    bokeh \
+    cssutils \
+    dbfpy \
+    html2text \
+    libsass \
+    odoorpc \
+    ofxparse \
+    openupgradelib \
+    num2words \
+    pandas \
+    phonenumbers \
+    polib \
+    psycogreen \
+    python3-dateutil \
+    twilio \
+    unidecode \
+    xlrd \
+    zeep \
+    zklib
