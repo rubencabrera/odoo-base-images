@@ -1,5 +1,6 @@
-# DOCKER image to run odoo 12 with Odoo Community Backports and OCA addons
-FROM debian:9.13
+# DOCKER image to run odoo 14 with Odoo Community Backports and OCA addons
+# Bullseye:
+FROM debian:11.6
 MAINTAINER Rubén Cabrera Martínez <dev@rubencabrera.es>
 EXPOSE 8069 8071 8072
 ENV LANG C.UTF-8
@@ -11,22 +12,17 @@ RUN apt-get update \
     gnupg2 \
     -y
 
-RUN add-apt-repository "deb http://apt.postgresql.org/pub/repos/apt/ stretch-pgdg main" -y; \
-    wget --quiet -O - https://postgresql.org/media/keys/ACCC4CF8.asc | \
-    apt-key add -
-
 RUN apt-get update && apt-get install \
         git \
-        libssl1.0-dev \
+        libssl-dev \
         locales \
         net-tools \
         node-clean-css \
         node-less \
-	postgresql-client-9.6 \
+        postgresql-client \
         python3-apt \
         python3-babel \
         python3-cups \
-        python3-dateutil \
         python3-decorator \
         python3-dev \
         python3-docutils \
@@ -67,25 +63,27 @@ RUN apt-get update && apt-get install \
         xfonts-utils \
         -y
 
-RUN wget https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.5/wkhtmltox_0.12.5-1.stretch_amd64.deb
-RUN dpkg -i wkhtmltox_0.12.5-1.stretch_amd64.deb
+RUN wget https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6.1-2/wkhtmltox_0.12.6.1-2.bullseye_amd64.deb
+RUN dpkg -i wkhtmltox_0.12.6.1-2.bullseye_amd64.deb
 
 RUN pip3 install \
-        backports.functools_lru_cache \
-	bokeh \
-        cssutils \
-        dbfpy \
-        html2text \
-        libsass \
-	odoorpc \
-	ofxparse \
-        openupgradelib \
-        num2words \
-	pandas \
-	phonenumbers \
-        psycogreen \
-	twilio \
-        unidecode \
-        xlrd \
-	zeep \
-	zklib
+    backports.functools_lru_cache \
+    bokeh \
+    cssutils \
+    dbfpy \
+    html2text \
+    libsass \
+    odoorpc \
+    ofxparse \
+    openupgradelib \
+    num2words \
+    pandas \
+    phonenumbers \
+    polib \
+    psycogreen \
+    python-dateutil \
+    twilio \
+    unidecode \
+    xlrd \
+    zeep \
+    zklib
