@@ -81,6 +81,7 @@ RUN pip3 install \
     phonenumbers \
     polib \
     psycogreen \
+    pudb \
     python-dateutil \
     twilio \
     unidecode \
