@@ -20,4 +20,4 @@ jobs:
         id: semrel
         env:
           GITHUB_TOKEN: ${{ secrets.SEMREL_GITHUB_TOKEN }}
-        uses: cycjimmy/semantic-release-action@v4
+        uses: cycjimmy/semantic-release-action@v6.0.0
